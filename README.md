@@ -98,7 +98,7 @@ The core functionality of the backend is exposed via a single endpoint defined i
 
 | Method | Endpoint | Description | Request Body (JSON) |
 | :--- | :--- | :--- | :--- |
-| **POST** | `/circuit/run-circuit/` | Runs the Qiskit simulation on the QASM input. | `{"qasm": "OPENQASM 2.0;...", "shots": 1024}` |
+| **POST** | `/circuit/run_circuit/` | Runs the Qiskit simulation on the QASM input. | `{"qasm": "OPENQASM 2.0;...", "shots": 1024}` |
 
 -----
 
