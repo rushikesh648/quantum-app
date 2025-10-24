@@ -14,12 +14,12 @@ class CircuitRequest(BaseModel):
     qasm: str  # QASM string representation of the circuit
     shots: int = 1024
 
-@router.post("/run-circuit/")
+@router.post("/run_circuit/")
 async def run_circuit_endpoint(request: CircuitRequest):
     """
     API endpoint to run a quantum circuit simulation.
     
-    The path will be /circuit/run-circuit/
+    The path will be /circuit/run_circuit/
     """
     try:
         # Call the separated backend logic
