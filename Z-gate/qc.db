@@ -1,0 +1,35 @@
+from qiskit import QuantumCircuit, transpile
+from qiskit_aer import Aer
+from qiskit.visualization import plot_histogram
+
+# The size of our 'database' is determined by the number of qubits.
+# N = 2^n, where n is the number of qubits.
+# n = 2 qubits -> N = 4 possible states/items: |00>, |01>, |10>, |11>
+n = 2 
+qc = QuantumCircuit(n, n)
+
+# --- Define the 'Target' Data Point (The Search Item) ---
+# We will search for the state |11> (the item at index 3 in a list).
+# In Grover's, this is done by defining an 'Oracle' gate.
+
+def create_oracle(qc, target_state='11'):
+    """
+    Creates a CNOT-based oracle that marks the |11> state by
+    applying a Z-gate controlled by both qubits being 1.
+    """
+    if target_state == '11':
+        # Apply a controlled-Z gate (CZ) on |11>
+        qc.cz(0, 1)
+
+# --- Define the Grover Diffuser (The Amplifier) ---
+def create_diffuser(qc, n):
+    """
+    Applies the H-gate and a multi-controlled Z-gate to invert 
+    the amplitude around the average, amplifying the marked state.
+    """
+    qc.h(range(n))
+    qc.x(range(n))
+    # Apply a multi-controlled Z on the all-1 state
+    qc.cz(0, 1) 
+    qc.x(range(n))
+    qc.h(range(n))
