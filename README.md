@@ -45,6 +45,8 @@ python -m venv venv
 source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 
 # Install dependencies for both frontend and backend
+pip install streamlit qiskit matplotlib
+pip install qiskit qiskit-aer
 pip install streamlit fastapi uvicorn qiskit qiskit-aer matplotlib pydantic pillow
 ```
 
